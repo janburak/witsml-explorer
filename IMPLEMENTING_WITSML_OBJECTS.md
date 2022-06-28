@@ -83,13 +83,13 @@ Based on [#1222](https://github.com/equinor/witsml-explorer/pull/1222)
 9. Add onSelect to [Parent]sListView
 
 ## 4. Modify operation
-## 4.1 API
+### 4.1 API
 1. Create an Jobs/Modify[Object]Job.cs and add it to Models/JobType.cs
 2. Add the object model to Models/EnitityType.cs
 3. If an object on wellbore, add a Refresh[Object] class to Models/RefreshAction.cs
 4. Implement the Workers/Modify[Object]Worker.cs. The pattern is quite similar across all modify workers.
 
-## 4.2 Frontend
+### 4.2 Frontend
 Based partially on [#1258](https://github.com/equinor/witsml-explorer/pull/1258)
 1. Implement components/Modals/[Object]PropertiesModal.tsx
 2. Implement [Object]ContextMenu.tsx and [Object]SidebarContextMenu.tsx in components/ContextMenus. Duplicated code can be extracted to [Object]ContextMenuUtils.tsx
