@@ -101,7 +101,7 @@ Based partially on [#1258](https://github.com/equinor/witsml-explorer/pull/1258)
    * add refresh[Object] function to components/RefreshHandler.tsx
 
 ## 5. Delete operation
-This task may be combined with "8. Checkable rows" to allow for deleting multiple objects from the get-go.
+It might be good to combine this task with "8. Checkable rows" to allow for deleting multiple objects from the get-go.
 
 ### 5.1 API
 1. Implement [Object]Reference.cs in Api/Jobs/Common
@@ -112,3 +112,37 @@ This task may be combined with "8. Checkable rows" to allow for deleting multipl
 1. Implement [object]Reference.ts in Frontend/models/jobs
 2. Add Delete[Object] to Frontend/services/jobService.tsx
 3. Add delete functionality [Object]ContextMenu.tsx and [Object]SidebarContextMenu.tsx in components/ContextMenus. Duplicated code can be extracted to [Object]ContextMenuUtils.tsx
+
+## 6. Complete Witsml/Data class
+To be able to copy an object, its Witsml[Object] class should include every single property from the specification. This includes implementing the Witsml/Data classes of any objects further down in the hierarchy, such as Tubular containing TubularComponent containing MwdTool. Only current exception is ExtensionNameValue which is reported to be not used by any data providers. Given the possible large number of properties to include, it is beneficial to create a dummy object in XML that fills out all the properties, adding it to a test server, and then implementing a test akin to Tests/WitsmlExplorer.IntegrationTests/Witsml/GetFromStore/TubularTests.cs.
+
+## 7. Copy/paste operation
+It might be good to combine this task with "8. Checkable rows" to allow for deleting multiple objects from the get-go.
+
+There is some confusion in the codebase regarding the naming of copy and paste. In frontend, we "copy" to put the object reference into the clipboard. In turn, the context menu item "paste" orders a "copy" job that does the work of adding a new instance to the target based on the source from clipboard.
+
+### 7.1 API
+1. Create an Api/Jobs/Copy[Object]Job.cs and add it to Models/JobType.cs
+2. Add a Copy[Object] method Api/Query/[Object]Queries.cs. Make sure to replace the properties such as nameWell that will change based on the parent.
+3. Implement the Api/Workers/Copy[Object]Worker.cs. The pattern is quite similar across all modify workers.
+
+### 7.2 Frontend
+1. Add Copy[Object] to Frontend/services/jobService.tsx
+2. Implement copy[Object]Job.ts that:
+   * verifies the properties of [Object]Reference 
+   * parses a string to [Object]Reference
+3. Add copy/paste functionality [Object]ContextMenu.tsx and [Object]SidebarContextMenu.tsx in components/ContextMenus. Duplicated code can be extracted to [Object]ContextMenuUtils.tsx.
+4. If object on a wellbore, also add the option to paste the object in WellboreContextMenu.
+
+## 8. Checkable rows in view
+By setting the "checkableRows" flag in the ContentTable element in a view, it is possible mark multiple objects to perform an operation. Look at [#1294](https://github.com/equinor/witsml-explorer/pull/1294/) for an example of rewriting existing functionality to allow for checkable rows (much of it is changing variable names to plural).
+1. Delete and Copy jobs in Api/Jobs/common need to allow for multiple objects.
+2. Workers in Api/Workers must be rewritten. Objects on wellbore will likely require one query per object, like for Tubular. Lower level objects such as TubularComponent might be possible to use a single query for all objects.
+3. Set the checkableRows flag in the view.
+4. Make sure context menus in frontend handle multiple objects correctly.
+
+## 9. Refresh
+TODO
+
+## 10. Show on server
+TODO
