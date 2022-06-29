@@ -53,7 +53,7 @@ An endpoint needs to be set up to allow WITSML Explorer to retrieve objects.
 ### 3.1 Adding a view for an object under wellbore
 Based on [#1211](https://github.com/equinor/witsml-explorer/pull/1211)
 1. Create the object interface in WitmlExplorer.Frontend/models
-    2. Add the object to the wellbore model
+2. Add the object to the wellbore model
 3. In navigationStateReducer.tsx:
    * add the object to SelectWellboreAction payload, 
    * add selected[Object]Group to NavigationState interface
@@ -99,3 +99,16 @@ Based partially on [#1258](https://github.com/equinor/witsml-explorer/pull/1258)
    * add an updateWellbore[Object]s function and action to navigationStateReducer.tsx
    * add Update[Object]sOnWellbore to contexts/modificationType.tsx
    * add refresh[Object] function to components/RefreshHandler.tsx
+
+## 5. Delete operation
+This task may be combined with "8. Checkable rows" to allow for deleting multiple objects from the get-go.
+
+### 5.1 API
+1. Implement [Object]Reference.cs in Api/Jobs/Common
+2. Create an Api/Jobs/Delete[Object]Job.cs and add it to Models/JobType.cs
+3. Implement the Api/Workers/Delete[Object]Worker.cs. The pattern is quite similar across all modify workers.
+
+### 5.2 Frontend
+1. Implement [object]Reference.ts in Frontend/models/jobs
+2. Add Delete[Object] to Frontend/services/jobService.tsx
+3. Add delete functionality [Object]ContextMenu.tsx and [Object]SidebarContextMenu.tsx in components/ContextMenus. Duplicated code can be extracted to [Object]ContextMenuUtils.tsx
