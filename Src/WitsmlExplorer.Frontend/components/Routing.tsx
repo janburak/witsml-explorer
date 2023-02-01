@@ -315,21 +315,21 @@ const isQueryParamsEqual = (urlQp: QueryParams, stateQp: QueryParams): boolean =
   });
 };
 
-const getQueryParamsFromState = (state: NavigationState): QueryParams => {
+const getQueryParamsFromState = (stateaaa: NavigationState): QueryParams => {
   return {
-    ...(state.selectedServer && { serverUrl: state.selectedServer.url }),
-    ...(state.selectedWell && { wellUid: state.selectedWell.uid }),
-    ...(state.selectedWellbore && { wellboreUid: state.selectedWellbore.uid }),
-    ...(state.selectedBhaRunGroup && { bhaRunGroupUid: "group" }),
-    ...(state.selectedLog && { logObjectUid: state.selectedLog.uid }),
-    ...(state.selectedMessageGroup && { messageGroupUid: "group" }),
-    ...(state.selectedMudLogGroup && { mudLogGroupUid: "group" }),
-    ...(state.selectedRigGroup && { rigGroupUid: "group" }),
-    ...(state.selectedRiskGroup && { riskGroupUid: "group" }),
-    ...(state.selectedTrajectory && { trajectoryUid: state.selectedTrajectory.uid }),
-    ...(state.selectedTubular && { tubularUid: state.selectedTubular.uid }),
-    ...(state.selectedMudLog && { mudLogUid: state.selectedMudLog.uid }),
-    ...(state.selectedWbGeometry && { wbGeometryUid: state.selectedWbGeometry.uid })
+    ...(stateaaa.selectedServer && { serverUrl: stateaaa.selectedServer.url }),
+    ...(stateaaa.selectedWell && { wellUid: stateaaa.selectedWell.uid }),
+    ...(stateaaa.selectedWellbore && { wellboreUid: stateaaa.selectedWellbore.uid }),
+    ...(stateaaa.selectedBhaRunGroup && { bhaRunGroupUid: "group" }),
+    ...(stateaaa.selectedLog && { logObjectUid: stateaaa.selectedLog.uid }),
+    ...(stateaaa.selectedMessageGroup && { messageGroupUid: "group" }),
+    ...(stateaaa.selectedMudLogGroup && { mudLogGroupUid: "group" }),
+    ...(stateaaa.selectedRigGroup && { rigGroupUid: "group" }),
+    ...(stateaaa.selectedRiskGroup && { riskGroupUid: "group" }),
+    ...(stateaaa.selectedTrajectory && { trajectoryUid: stateaaa.selectedTrajectory.uid }),
+    ...(stateaaa.selectedTubular && { tubularUid: stateaaa.selectedTubular.uid }),
+    ...(stateaaa.selectedMudLog && { mudLogUid: stateaaa.selectedMudLog.uid }),
+    ...(stateaaa.selectedWbGeometry && { wbGeometryUid: stateaaa.selectedWbGeometry.uid })
   };
 };
 
