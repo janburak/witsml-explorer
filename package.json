@@ -1,7 +1,7 @@
 {
   "name": "witsml-explorer-root",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "The root package.json for Witsml Explorer",
   "homepage": "https://github.com/equinor/witsml-explorer#readme",
   "bugs": {
