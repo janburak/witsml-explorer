@@ -12,21 +12,18 @@ namespace WitsmlExplorer.Api.Jobs
     public record CopyWellJob : ICopyJob<WellReference, WellReference> { }
     public record CopyWellboreJob : ICopyJob<WellboreReference, WellboreReference> { }
 
-    public abstract record CopyWithParentJob<T, U> : ICopyJob<T, U>
-        where T : IReference
-        where U : IReference
+    public abstract record CopyWithParentJob : ICopyJob<ObjectReferences, WellboreReference>
     {
         public CopyWellJob CopyWellJob { get; init; }
 
         public CopyWellboreJob CopyWellboreJob { get; init; }
     }
 
-    public record CopyLogWithParentJob : CopyWithParentJob<ObjectReferences, WellboreReference>
+    public record CopyLogWithParentJob : CopyWithParentJob
     {
-        public CopyLogJob CopyLogJob { get; init; }
     }
 
-    public record CopyObjectsWithParentJob : CopyWithParentJob<ObjectReferences, WellboreReference>
+    public record CopyObjectsWithParentJob : CopyWithParentJob
     {
         public CopyObjectsJob CopyObjectsJob { get; init; }
     }
